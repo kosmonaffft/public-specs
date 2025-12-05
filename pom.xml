@@ -21,6 +21,14 @@
         </developer>
     </developers>
 
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+    </dependencies>
+
     <licenses>
         <license>
             <name>Apache-2.0</name>
@@ -120,6 +128,26 @@
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sources>
+                        <source>${project.basedir}/src/main/resources/xsd/ON_OTTRNDS_1_887_00_05_02_02.xsd</source>
+                    </sources>
+                    <outputDirectory>${project.build.directory}/src/gen/java</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
